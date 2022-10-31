@@ -23,7 +23,7 @@ def imgRet(key='hne'):
                 if key in file.lower() and (("cropped" in file.lower())==False):
                     prpath=str(os.path.join(subdir, file))
                     id = uuid.uuid4()
-                    singletonout = {"name":file,"id":id,"path":prpath, "md5sum":os.system('md5sum '+prpath)}
+                    singletonout = {"name":file,"id":id,"path":prpath}
                     output.append(singletonout)
                     counter+=1
                     # if os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)) == False:
