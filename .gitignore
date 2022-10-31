@@ -57,4 +57,8 @@ dkms.conf
 *.png
 *.gif
 
+# removing HPC generated files
+*.log
+*.json
+
 OutputFold/
