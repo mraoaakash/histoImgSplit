@@ -8,7 +8,7 @@ import fnmatch # for matching file names
 
 
 def imgRet(key='hne'):
-    exclude = list(((open("illfold.txt","r")).read()).split(",")) # list of files to exclude
+    exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read()).split(",")) # list of files to exclude
     print(exclude)
     for subdir, dirs, files in os.walk("/storage/tnbc"):
         print(dirs)
