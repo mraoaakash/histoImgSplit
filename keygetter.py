@@ -19,7 +19,7 @@ def imgRet(key='hne'):
                 if key in file.lower() and (("cropped" in file.lower())==False):
                     prpath=str(os.path.join(subdir, file))
                     print(file)
-                    id = uuid.uuid3(file, file)
+                    id = uuid.uuid4()
                     print(id)
                     # if os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)) == False:
                     #     print(f"")
