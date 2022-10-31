@@ -15,7 +15,7 @@ def imgRet(key='hne'):
                     prpath=str(os.path.join(subdir, file))
                     print(file)
                     if os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)) == False:
-                        print(f" {file} not in storage")
+                        print(f"")
                         # shutil.copy(prpath, "/storage/tnbc/NewDatasetHnE/work_copy")
 					#call yout preferred function here
 					#can be	randcrop or imgcrop or any
