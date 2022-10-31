@@ -9,6 +9,8 @@ exclude = ['clusters', 'ex_datasets', 'grand-challenge-data', 'segments', 'tSNE'
 def imgRet(key='hne'):
     for subdir, dirs, files in os.walk("/storage/tnbc"):
         print(dirs)
+        print(subdir)
+        print(files)
         dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if fnmatch.fnmatch(file, '*.tif'):
