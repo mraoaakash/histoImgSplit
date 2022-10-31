@@ -14,8 +14,8 @@ def imgRet(key='hne'):
                 if key in file.lower() and (("cropped" in file.lower())==False):
                     prpath=str(os.path.join(subdir, file))
                     print(file)
-                    if os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)) == False:
-                        print(f"")
+                    # if os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)) == False:
+                    #     print(f"")
                         # shutil.copy(prpath, "/storage/tnbc/NewDatasetHnE/work_copy")
 					#call yout preferred function here
 					#can be	randcrop or imgcrop or any
