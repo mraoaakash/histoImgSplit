@@ -2,11 +2,14 @@ import shutil # for copying files
 import os # for checking if file exists
 import numpy as np # for image processing
 import fnmatch # for matching file names
+import 
 
 
 
-exclude = ['clusters', 'ex_datasets', 'grand-challenge-data', 'segments', 'tSNE', 'benchmark', 'NewDatasetHnE', 'histoimgsplit']
+
 def imgRet(key='hne'):
+    exclude = list(((open("MyFile.txt","a")).read()).split(",")) # list of files to exclude
+    print(exclude)
     for subdir, dirs, files in os.walk("/storage/tnbc"):
         print(dirs)
         print(subdir)
