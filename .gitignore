@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Removing images incase theyappear in the directory
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+OutputFold/
