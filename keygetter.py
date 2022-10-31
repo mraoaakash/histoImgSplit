@@ -11,9 +11,6 @@ def imgRet(key='hne'):
     exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read()).split(",")) # list of files to exclude
     print(exclude)
     for subdir, dirs, files in os.walk("/storage/tnbc"):
-        print(dirs)
-        print(subdir)
-        print(files)
         dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if fnmatch.fnmatch(file, '*.tif'):
