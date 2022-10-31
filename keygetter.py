@@ -5,7 +5,7 @@ import fnmatch # for matching file names
 
 
 
-exclude = ['clusters', 'ex_datasets', 'grand-challenge-data', 'segments', 'tSNE', 'benchmark', 'NewDatasetHnE']
+exclude = ['clusters', 'ex_datasets', 'grand-challenge-data', 'segments', 'tSNE', 'benchmark', 'NewDatasetHnE', 'histoimgsplit']
 def imgRet(key='hne'):
     for subdir, dirs, files in os.walk("/storage/tnbc"):
         dirs[:] = [d for d in dirs if d not in exclude]
