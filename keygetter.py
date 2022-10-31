@@ -2,6 +2,9 @@ import shutil # for copying files
 import os # for checking if file exists
 import numpy as np # for image processing
 import fnmatch # for matching file names
+
+
+
 exclude = ['clusters', 'ex_datasets', 'grand-challenge-data', 'segments', 'tSNE', 'benchmark', 'NewDatasetHnE']
 def imgRet(key='hne'):
     for subdir, dirs, files in os.walk("/storage/tnbc"):
@@ -11,6 +14,9 @@ def imgRet(key='hne'):
                 if key in file.lower() and (("cropped" in file.lower())==False):
                     prpath=str(os.path.join(subdir, file))
                     print(file)
+                    if not os.path.isfile(os.path.join("/storage/tnbc/NewDatasetHnE/work_copy", file)):
+                        print(f" {file} not in storage")
+                        #shutil.copy(prpath, "/storage/tnbc/segments")
                     # shutil.copy(prpath, "/storage/tnbc/NewDatasetHnE/work_copy")
 					#call yout preferred function here
 					#can be	randcrop or imgcrop or any
