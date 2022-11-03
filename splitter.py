@@ -1,22 +1,34 @@
 import tifffile as tf
-import numpy as np
 import os
 import uuid
 import json
 import shutil
 
 
-sizes = [350,1750, 7000]
+size = [350,1750, 7000]
 singletonout = {}
 currentimg = {}
 out = "./OutputFold/Mapping"
 ids = "./OutputFold/DataSet"
 
-
 IDJSON = []
+_last_print_len = 0 
+def reprint(msg, finish=False): 
+    global _last_print_len 
+     
+    print(' '*_last_print_len, end='\r') 
+     
+    if finish: 
+        end = '\n' 
+        _last_print_len = 0 
+    else: 
+        end = '\r' 
+        _last_print_len = len(msg) 
+     
+    print(msg, end=end) 
 
 def idcopy(size):
-    print(f"Creating ID json for size = {size} along with ID folder")
+    reprint(f"Creating ID json for size = {size} along with ID folder")
     idpath = f"{ids}/{size//35}x"
     jsonspath = f"{idpath}/jsons"
     if not os.path.exists(idpath):
@@ -30,22 +42,21 @@ def idcopy(size):
             'id': i['id'],
             'patchpath': f"{idpath}/{i['id']}.tif",
             'srcname': i['srcname'],
-            'srcpath': i['patchpath']
+            'srcpath': i['patchpath'],
+            'size': i['size']
         }
         IDJSON.append(partition)
         json.dump(partition, open(f"{jsonspath}/{i['id']}.json", "w+"))
-    print(f"ID folder and jsons created")
-
+    reprint(f"ID folder and jsons created")
 
 def localjson(size):
-    print(f"Creating local json for size = {size}")
+    reprint(f"Creating local json for size = {size}")
     jspath = f"{out}/{currentimg['newname']}/{size//35}x/local.json"
     json.dump(LOCALJSON, open(jspath, "w+"))
     idcopy(size)
 
-
 def inputter():
-    print(f"Getting Image Sources")
+    reprint(f"Getting Image Sources")
     with open(f'{out}/master.json') as f:
         data = json.load(f)
     global sourcelist 
@@ -62,13 +73,11 @@ def datacreator(file,i,size):
         'name':patchpath.split("/")[-1],
         'id':id,
         'patchpath':patchpath,
-        'srcname':file
+        'srcname':file,
+        'size':size
     }
     LOCALJSON.append(singletonout)
     
-
-
-
 def save_image(image, name):
     #this function is responsible to save the image
     #image is the image to be saved
@@ -76,41 +85,38 @@ def save_image(image, name):
     #size is the size of the image
     tf.imsave(name, image)
     
-
-
 def split_image(impath, size,loc):
     #this function is responsible to split the image into smaller images
     #image is the image to be split
     image = tf.imread(impath)
-    print(f"Imagesplit has begun")
+    reprint(f"Imagesplit has begun")
     for i in range(0, image.shape[0], size):
         for j in range(0, image.shape[1], size):
             if(i+size <= image.shape[0] and j+size <= image.shape[1]):
                 cropped = image[i:i+size, j:j+size]
                 name = impath.split("/")[-1]
                 global savepath
-                savepath = f"{loc}/{name[:-4]}-{i}-{j}.tif"
+                savepath = f"{loc}/{name[:-4]}-{size}px-{i}-{j}.tif"
+                reprint("\e[2K") # clear whole line
+                reprint("\e[1G") # move cursor to column 1
+                reprint(savepath)
                 save_image(cropped, savepath)
                 datacreator(name, f'({i},{j})',size)
-    print(f"Imagesplit has finished")
-
-
+    reprint(f"Imagesplit has finished")
 
 def main():
     global LOCALJSON
     LOCALJSON = []
     inputter()
-    size=[350,1750,7000]
-
     for s in size:
-        print(f"Carrying out imagesplitting for size = {s}")
+        reprint(f"Carrying out imagesplitting for size = {s}")
         for i in sourcelist:
             global currentimg 
             currentimg = i
             srcpath = f"{out}/{i['newname']}/{i['newname']}.tif"
             patchpath = os.path.join(f"{out}/{i['newname']}", f'{s//35}x')
             if not os.path.exists(patchpath):
-                print(f"Folder structure created")
+                reprint(f"Folder structure created")
                 os.makedirs(patchpath)
             split_image(i['newpath'], s, patchpath)
         localjson(s)

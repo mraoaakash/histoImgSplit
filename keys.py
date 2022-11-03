@@ -23,7 +23,6 @@ def structurer(count, site="S01", locale="AU"):
 
 
 def copier(path, newpath, file):
-    print(singletonout)
     if not os.path.exists(newpath):
         os.makedirs(newpath)
         shutil.copy(path, f"{newpath}/{file}.tif")
@@ -51,7 +50,6 @@ def masterjson():
             data = json.load(f)
             output.extend(data)
     json.dump(output, open(f"{out}/master.json", "w+"))
-    print(output)
 
 def imgRet(key='hne'):
     # list of folders to exclude
