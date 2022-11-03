@@ -6,28 +6,29 @@ import fnmatch # for matching file names
 import uuid
 import json
 
-
+#  Global Variables
 out = "./OutputFold/Mapping"
 singletonout = {}
 output = []
 
+# Function that creates a unique key for each image
 def keyer(image, impath):
     id = uuid.uuid4()
     return id
 
+# Function that creates the name mapping from ICER to the new AU internal name 
 def structurer(count, site="S01", locale="AU"):
     newname = f"{site}-{locale}-{str(count).zfill(6)}-R"
     newpath = os.path.join(out, newname)
     return newname, newpath
 
-
-
+# Function that copies the image to the new folder with the new internal name
 def copier(path, newpath, file):
     if not os.path.exists(newpath):
         os.makedirs(newpath)
         shutil.copy(path, f"{newpath}/{file}.tif")
 
-
+# Function to create the metadata
 def datacreator(file, prpath, counter):
     id = keyer(file,prpath)
     newname, newpath = structurer(counter)
@@ -42,15 +43,17 @@ def datacreator(file, prpath, counter):
     output.append(singletonout)
     counter+=1
 
+# Saves the master metadata.json file
 def masterjson():
-    if not os.path.exists(f"{out}/master.json"):
+    if not os.path.exists(f"{out}/metadata.json"):
         pass
     else:
-        with open(f"{out}/master.json") as f:
+        with open(f"{out}/metadata.json") as f:
             data = json.load(f)
             output.extend(data)
-    json.dump(output, open(f"{out}/master.json", "w+"))
+    json.dump(output, open(f"{out}/metadata.json", "w+"))
 
+# Function that gets the image sources and calls all required supporter functions 
 def imgRet(key='hne'):
     # list of folders to exclude
     # exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read().strip()).split(",")) 
@@ -66,6 +69,7 @@ def imgRet(key='hne'):
                     masterjson()
                     counter+=1
 
+# Function that prints the progress of the script
 def main():
     if not os.path.exists(out):
         os.makedirs(out)

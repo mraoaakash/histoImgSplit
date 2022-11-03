@@ -5,13 +5,17 @@ import json
 import shutil
 
 
-size = [350,1750, 7000]
+# Global Variables
+size = [350,1750,7000]
 singletonout = {}
 currentimg = {}
 out = "./OutputFold/Mapping"
 ids = "./OutputFold/DataSet"
 
+# Json object
 IDJSON = []
+
+# Reprinter Function
 _last_print_len = 0 
 def reprint(msg, finish=False): 
     global _last_print_len 
@@ -27,6 +31,7 @@ def reprint(msg, finish=False):
      
     print(msg, end=end) 
 
+# Function that reads the created metadata.json and copies the images to the dataset folder keyed by UUID
 def idcopy(size):
     reprint(f"Creating ID json for size = {size} along with ID folder")
     idpath = f"{ids}/{size//35}x"
@@ -49,12 +54,15 @@ def idcopy(size):
         json.dump(partition, open(f"{jsonspath}/{i['id']}.json", "w+"))
     reprint(f"ID folder and jsons created")
 
+
+# Creates the original metadata.json
 def localjson(size):
     reprint(f"Creating local json for size = {size}")
     jspath = f"{out}/{currentimg['newname']}/{size//35}x/metadata.json"
     json.dump(LOCALJSON, open(jspath, "w+"))
     idcopy(size)
 
+# Function that takes the input from the master metadata.json 
 def inputter():
     reprint(f"Getting Image Sources")
     with open(f'{out}/metadata.json') as f:
@@ -62,10 +70,12 @@ def inputter():
     global sourcelist 
     sourcelist = data
 
+# Function that creates a unique key for each image
 def keyer():
     id = uuid.uuid4()
     return str(id)
 
+# Function that creates the metadata object for each image
 def datacreator(file,i,size):
     id = keyer()
     patchpath = savepath
@@ -78,6 +88,7 @@ def datacreator(file,i,size):
     }
     LOCALJSON.append(singletonout)
     
+# Function that saves the image
 def save_image(image, name):
     #this function is responsible to save the image
     #image is the image to be saved
@@ -85,6 +96,7 @@ def save_image(image, name):
     #size is the size of the image
     tf.imsave(name, image)
     
+# Function that splits the image
 def split_image(impath, size,loc):
     #this function is responsible to split the image into smaller images
     #image is the image to be split
@@ -104,6 +116,7 @@ def split_image(impath, size,loc):
                 datacreator(name, f'({i},{j})',size)
     reprint(f"Imagesplit has finished")
 
+# Function that creates the folder structure and calls all the above supporter functions
 def main():
     global LOCALJSON
     LOCALJSON = []
