@@ -51,13 +51,13 @@ def idcopy(size):
 
 def localjson(size):
     reprint(f"Creating local json for size = {size}")
-    jspath = f"{out}/{currentimg['newname']}/{size//35}x/local.json"
+    jspath = f"{out}/{currentimg['newname']}/{size//35}x/metadata.json"
     json.dump(LOCALJSON, open(jspath, "w+"))
     idcopy(size)
 
 def inputter():
     reprint(f"Getting Image Sources")
-    with open(f'{out}/master.json') as f:
+    with open(f'{out}/metadata.json') as f:
         data = json.load(f)
     global sourcelist 
     sourcelist = data
