@@ -39,7 +39,6 @@ We output the following:
         - A folder for a given size with patches based on selected zoom level with,
             - A local json with,
                 - Patch name
-                - Patch md5-sum
                 - Patch path
                 - Patch coordinates (top left x,y)
                 - Overlap setting (0 by default)
