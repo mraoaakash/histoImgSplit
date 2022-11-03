@@ -41,16 +41,17 @@ def datacreator(file, prpath, counter):
         'srcname':file
     }
     output.append(singletonout)
+    singletonout = {}
     counter+=1
 
 # Saves the master metadata.json file
 def masterjson():
-    if not os.path.exists(f"{out}/metadata.json"):
-        pass
-    else:
-        with open(f"{out}/metadata.json") as f:
-            data = json.load(f)
-            output.extend(data)
+    # if not os.path.exists(f"{out}/metadata.json"):
+    #     pass
+    # else:
+    #     with open(f"{out}/metadata.json") as f:
+    #         data = json.load(f)
+    #         output.extend(data)
     json.dump(output, open(f"{out}/metadata.json", "w+"))
 
 # Function that gets the image sources and calls all required supporter functions 

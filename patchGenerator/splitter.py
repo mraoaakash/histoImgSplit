@@ -57,14 +57,15 @@ def idcopy(size):
 
 # Creates the original metadata.json
 def localjson(size):
-    reprint(f"Creating local json for size = {size}")
+    print(f"Creating local json for size = {size}")
     jspath = f"{out}/{currentimg['newname']}/{size//35}x/metadata.json"
     json.dump(LOCALJSON, open(jspath, "w+"))
     idcopy(size)
+    print(f"Finished creating local json for size = {size}")
 
 # Function that takes the input from the master metadata.json 
 def inputter():
-    reprint(f"Getting Image Sources")
+    print(f"Getting Image Sources")
     with open(f'{out}/metadata.json') as f:
         data = json.load(f)
     global sourcelist 
@@ -114,7 +115,7 @@ def split_image(impath, size,loc):
                 reprint(savepath)
                 save_image(cropped, savepath)
                 datacreator(name, f'({i},{j})',size)
-    reprint(f"Imagesplit has finished")
+    print(f"Imagesplit has finished")
 
 # Function that creates the folder structure and calls all the above supporter functions
 def main():
@@ -122,7 +123,7 @@ def main():
     LOCALJSON = []
     inputter()
     for s in size:
-        reprint(f"Carrying out imagesplitting for size = {s}")
+        print(f"Carrying out imagesplitting for size = {s}")
         for i in sourcelist:
             global currentimg 
             currentimg = i
@@ -134,6 +135,7 @@ def main():
             split_image(i['newpath'], s, patchpath)
         localjson(s)
         LOCALJSON.clear()
+        print(f"Finished imagesplitting for size = {s}")
 
 
 main()
