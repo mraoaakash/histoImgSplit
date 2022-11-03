@@ -6,7 +6,7 @@ import json
 import shutil
 
 
-sizes = [350,7000]
+sizes = [350,1750, 7000]
 singletonout = {}
 currentimg = {}
 out = "./OutputFold/Mapping"
@@ -100,7 +100,7 @@ def main():
     global LOCALJSON
     LOCALJSON = []
     inputter()
-    size=[350,7000]
+    size=[350,1750,7000]
 
     for s in size:
         print(f"Carrying out imagesplitting for size = {s}")
