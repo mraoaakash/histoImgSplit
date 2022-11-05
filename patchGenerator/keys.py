@@ -7,7 +7,7 @@ import uuid
 import json
 
 #  Global Variables
-out = "./OutputFold/Mapping"
+out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/Mapping"
 singletonout = {}
 output = []
 
@@ -60,7 +60,7 @@ def imgRet(key='hne'):
     # exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read().strip()).split(",")) 
     exclude = ['clusters','ex_datasets','grand-challenge-data','segments','tSNE','benchmark','NewDatasetHnE','histoimgsplit']
     counter = 1
-    for subdir, dirs, files in os.walk("./testImage"):
+    for subdir, dirs, files in os.walk("/Users/mraoaakash/Documents/TNBC/histoImgSplit/testImage"):
         dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if fnmatch.fnmatch(file, '*.tif'):

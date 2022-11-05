@@ -6,11 +6,10 @@ import shutil
 
 
 # Global Variables
-size = [350,1750,7000]
 singletonout = {}
 currentimg = {}
-out = "./OutputFold/Mapping"
-ids = "./OutputFold/DataSet"
+out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/Mapping"
+ids = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/DataSet"
 
 # Json object
 IDJSON = []
@@ -56,7 +55,7 @@ def idcopy(size):
 
 
 # Creates the original metadata.json
-def localjson(size):
+def metadatawriter(size):
     print(f"Creating local json for size = {size}")
     jspath = f"{out}/{currentimg['newname']}/{size//35}x/metadata.json"
     json.dump(LOCALJSON, open(jspath, "w+"))
@@ -103,6 +102,7 @@ def split_image(impath, size,loc):
     #image is the image to be split
     image = tf.imread(impath)
     reprint(f"Imagesplit has begun")
+    numpatches = 0
     for i in range(0, image.shape[0], size):
         for j in range(0, image.shape[1], size):
             if(i+size <= image.shape[0] and j+size <= image.shape[1]):
@@ -115,25 +115,26 @@ def split_image(impath, size,loc):
                 reprint(savepath)
                 save_image(cropped, savepath)
                 datacreator(name, f'({i},{j})',size)
-    print(f"Imagesplit has finished")
+                numpatches += 1
+    print(f"Imagesplit has finished with {numpatches} patches")
 
 # Function that creates the folder structure and calls all the above supporter functions
 def main():
     global LOCALJSON
     LOCALJSON = []
     inputter()
+    size = [350,1750,7000]
     for s in size:
         print(f"Carrying out imagesplitting for size = {s}")
         for i in sourcelist:
             global currentimg 
             currentimg = i
-            srcpath = f"{out}/{i['newname']}/{i['newname']}.tif"
             patchpath = os.path.join(f"{out}/{i['newname']}", f'{s//35}x')
             if not os.path.exists(patchpath):
                 reprint(f"Folder structure created")
                 os.makedirs(patchpath)
             split_image(i['newpath'], s, patchpath)
-        localjson(s)
+            metadatawriter(s)
         LOCALJSON.clear()
         print(f"Finished imagesplitting for size = {s}")
 

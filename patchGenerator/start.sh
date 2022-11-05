@@ -7,4 +7,4 @@
 
 module load compiler/anaconda3
 source /storage/tnbc/NewDatasetHnE/histoimgsplit
-python3 /home/aakash.rao_ug23/cloud/histoImgSplit/keygetter.py
+python3 /home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/keygetter.py
