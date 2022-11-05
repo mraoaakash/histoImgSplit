@@ -7,7 +7,7 @@ import uuid
 import json
 
 #  Global Variables
-out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/Mapping"
+out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData/Mapping"
 singletonout = {}
 output = []
 
@@ -57,10 +57,9 @@ def masterjson():
 # Function that gets the image sources and calls all required supporter functions 
 def imgRet(key='hne'):
     # list of folders to exclude
-    # exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read().strip()).split(",")) 
-    exclude = ['clusters','ex_datasets','grand-challenge-data','segments','tSNE','benchmark','NewDatasetHnE','histoimgsplit']
+    exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read().strip()).split(",")) 
     counter = 1
-    for subdir, dirs, files in os.walk("/Users/mraoaakash/Documents/TNBC/histoImgSplit/testImage"):
+    for subdir, dirs, files in os.walk("/storage/tnbc"):
         dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if fnmatch.fnmatch(file, '*.tif'):

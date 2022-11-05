@@ -6,5 +6,6 @@
 #PBS -q cpu
 
 module load compiler/anaconda3
-source /storage/tnbc/NewDatasetHnE/histoimgsplit
-python3 /home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/keygetter.py
+source /storage/tnbc/dev-phase-001/histoimgsplit/bin/activate
+python3 /home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/keys.py
+python3 /home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/splitter.py

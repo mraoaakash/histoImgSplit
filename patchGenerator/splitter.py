@@ -8,8 +8,8 @@ import shutil
 # Global Variables
 singletonout = {}
 currentimg = {}
-out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/Mapping"
-ids = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputFold/DataSet"
+out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData/Mapping"
+ids = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData/DataSet"
 
 # Json object
 IDJSON = []
