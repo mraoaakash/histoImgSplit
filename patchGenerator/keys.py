@@ -57,7 +57,7 @@ def masterjson():
 # Function that gets the image sources and calls all required supporter functions 
 def imgRet(key='hne'):
     # list of folders to exclude
-    exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/illfold.txt","r")).read().strip()).split(",")) 
+    exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/illfold.txt","r")).read().strip()).split(",")) 
     counter = 1
     for subdir, dirs, files in os.walk("/storage/tnbc"):
         dirs[:] = [d for d in dirs if d not in exclude]
