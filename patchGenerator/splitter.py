@@ -10,6 +10,8 @@ singletonout = {}
 currentimg = {}
 out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData/Mapping"
 ids = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData/DataSet"
+# out  = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
+# ids = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/DataSet"
 
 # Json object
 IDJSON = []
@@ -123,7 +125,7 @@ def main():
     global LOCALJSON
     LOCALJSON = []
     inputter()
-    size = [350,1750,7000]
+    size = [512]
     for s in size:
         print(f"Carrying out imagesplitting for size = {s}")
         for i in sourcelist:
