@@ -7,8 +7,10 @@ import uuid
 import json
 
 #  Global Variables
-out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
-# out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
+# out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
+out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
+# origin = "/storage/tnbc"
+origin = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/testImage"
 singletonout = {}
 output = []
 
@@ -60,8 +62,8 @@ def imgRet(key='hne'):
     # list of folders to exclude
     exclude = list(((open("/home/aakash.rao_ug23/cloud/histoImgSplit/patchGenerator/illfold.txt","r")).read().strip()).split(",")) 
     counter = 1
-    for subdir, dirs, files in os.walk("/storage/tnbc"):
-        # dirs[:] = [d for d in dirs if d not in exclude]
+    for subdir, dirs, files in os.walk(origin):
+        dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if fnmatch.fnmatch(file, '*.tif'):
                 if key in file.lower() and (("cropped" in file.lower())==False):
@@ -71,7 +73,9 @@ def imgRet(key='hne'):
                     counter+=1
 
 # Function that prints the progress of the script
-if __name__ == "__main__":
+def main():
     if not os.path.exists(out):
         os.makedirs(out)
     imgRet()
+
+main()
