@@ -7,10 +7,10 @@ import uuid
 import json
 
 #  Global Variables
-# out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
-out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
-# origin = "/storage/tnbc"
-origin = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/testImage"
+out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
+# out = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
+origin = "/storage/tnbc"
+# origin = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/testImage"
 singletonout = {}
 output = []
 
