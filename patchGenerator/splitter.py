@@ -3,15 +3,16 @@ import os
 import uuid
 import json
 import shutil
+import cv2
 
 
 # Global Variables
 singletonout = {}
 currentimg = {}
-out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
-ids = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/DataSet"
-# out  = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/Mapping"
-# ids = "/Users/mraoaakash/Documents/TNBC/histoImgSplit/OutputData/DataSet"
+# out = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/Mapping"
+# ids = "/storage/tnbc/dev-phase-001/histoimgsplit/OutputData_512/DataSet"
+out  = "/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/OutputData/Mapping"
+ids = "/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/OutputData/DataSet"
 
 # Json object
 IDJSON = []
@@ -97,6 +98,8 @@ def save_image(image, name):
     #name is the name of the image
     #size is the size of the image
     tf.imsave(name, image)
+    namespl = name.split(".")[0]+".jpeg"
+    cv2.imwrite(namespl, image)
     
 # Function that splits the image
 def split_image(impath, size,loc):
@@ -125,7 +128,7 @@ def main():
     global LOCALJSON
     LOCALJSON = []
     inputter()
-    size = [512]
+    size = [350] #, 512, 3500, 7000]
     for s in size:
         print(f"Carrying out imagesplitting for size = {s}")
         for i in sourcelist:
