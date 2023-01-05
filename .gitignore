@@ -56,10 +56,11 @@ dkms.conf
 *.jpeg
 *.png
 *.gif
+*.tiff
+*.tif
 
 # removing HPC generated files
 *.log
 *.json
 
 OutputData/
-testImage/
