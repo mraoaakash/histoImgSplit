@@ -28,10 +28,10 @@ for p in range(len(tile_size)):
                 if deepzwsi.size[0] == deepzwsi.size[1]:
                     if deepzwsi.size[0] >= i:
                         deepzwsi = deepzwsi.resize((512,512)) 
-                if not os.path.isdir(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/downsampler/{x}/level{str(i)}"):
-                        os.makedirs(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/downsampler/{x}/level{str(i)}")
-                im1 = deepzwsi.save(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/downsampler/{x}/level{str(i)}/downsampWSI_level{str(i)}_{str(j)}_{str(k)}.jpg")
-                # if not os.path.isdir(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/downsampler/{x}/level{str(i)}"):
-                #         os.makedirs(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/downsampler/{x}/level{str(i)}")
-                # im1 = deepzwsi.save(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/downsampler/{x}/level{str(i)}/downsampWSI_level{str(i)}_{str(j)}_{str(k)}.jpg")
+                if not os.path.isdir(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}"):
+                        os.makedirs(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}")
+                im1 = deepzwsi.save(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}/downsampWSI_level{str(i)}_{str(j)}_{str(k)}.jpg")
+                # if not os.path.isdir(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/OpenSlideGen/{x}/level{str(i)}"):
+                #         os.makedirs(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/OpenSlideGen/{x}/level{str(i)}")
+                # im1 = deepzwsi.save(f"/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/OpenSlideGen/{x}/level{str(i)}/downsampWSI_level{str(i)}_{str(j)}_{str(k)}.jpg")
 
