@@ -11,7 +11,7 @@ import concurrent.futures
 
 
 def getTiles(tile_size):
-    image = openslide.OpenSlide("/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/testImage/20190610_541_528-18_1412-18-A_Biopsy_TNBC_HnE_40tile_size.tif")
+    image = openslide.OpenSlide("/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/testImage/20190610_541_528-18_1412-18-A_Biopsy_TNBC_HnE_40X.tif")
     # image = openslide.OpenSlide("/Users/mraoaakash/Documents/research/research-tnbc/histoImgSplit/testImage/20190610_541_528-18_1412-18-A_Biopsy_TNBC_HnE_40X.tif")
     # print(image.dimensions)
     dzoomImg = DeepZoomGenerator(image, tile_size=tile_size, overlap=1, limit_bounds=True)
