@@ -25,9 +25,6 @@ for p in range(len(tile_size)):
         for j in range(0,leveltiles[0]):
             for k in range(0,leveltiles[1]):
                 deepzwsi = dzoomImg.get_tile(i, address = (j, k))
-                if deepzwsi.size[0] == deepzwsi.size[1]:
-                    if deepzwsi.size[0] >= i:
-                        deepzwsi = deepzwsi.resize((512,512)) 
                 if not os.path.isdir(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}"):
                         os.makedirs(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}")
                 im1 = deepzwsi.save(f"/home/chs.rintu/Documents/chs-lab-ws02/research-cancerPathology/histoImgSplit/OpenSlideGen/{x}/level{str(i)}/downsampWSI_level{str(i)}_{str(j)}_{str(k)}.jpg")
