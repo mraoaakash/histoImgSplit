@@ -1,6 +1,5 @@
 # histoImgSplit
-This codebase is a part of a larger codebase for the study of Triple Negative Breast Cancer at Ashoka University's Centre for Health Analytics and Trends (CHART).
-
+This codebase is a part of a larger codebase for the study of Triple Negative Breast Cancer at Ashoka University's Centre for Health Analytics and Trends (CHART). 
 ## Introduction
 histoImgSplit is an large-format histopathology slide image management pipeline. Most histopathology Machine/ Deep Learning pipelines have the requirement of having large-format images split into patches of various sizes for analysis. This is done for various reasons with the chief reason being ease of creating consistent datasets across a given sample. This pipeline aims to make this process easier.
 
